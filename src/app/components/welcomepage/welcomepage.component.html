@@ -1,0 +1,205 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<!-- Include Tailwind CSS and Font Awesome -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+
+
+<!-- Header -->
+<header class="header">
+  <div class="logo">
+    <img src="assets/image.jpg" alt="Careers Logo" />
+  </div>
+
+  <nav class="nav">
+    <a href="#">SERVICES</a>
+    <a href="#">INDUSTRY</a>
+    <a href="#" class="active">CAREER</a>
+    <a href="#">ABOUT US</a>
+    <a href="#">CONTACT US</a>
+  </nav>
+
+  <div class="auth-buttons">
+    <a href="#" class="btn tech-support">SIGN UP</a>
+    <a href="#" class="btn employee-login">LOGIN</a>
+  </div>
+</header>
+
+
+<div class="container">
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Discover your path and grow into a <span class="highlight">driven professional</span></h1>
+      <p>This is a place where you can gain skills, explore new opportunities, and take your career to the next level
+        while creating real impact.</p>
+
+    </div>
+    <div class="team">
+      <div class="team-image">
+        <img src="assets/people.jpg" alt="Team">
+      </div>
+    </div>
+  </section>
+
+
+<!-- Filters Section -->
+<div class="filters bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg shadow-lg max-w-6xl mx-auto">
+  <div class="flex flex-col sm:flex-row items-center gap-4">
+    
+    <div class="relative flex-1" style="width: 300px;">
+      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
+        <i class="fas fa-briefcase"></i>
+      </span>
+      <select [(ngModel)]="designation" (ngModelChange)="onFilterChange()" 
+              class="w-full pl-10 pr-10 py-2 border border-indigo-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white text-gray-700 transition duration-200 appearance-none">
+        <option value="" disabled selected>Select Designation</option>
+        <option value="aix-admin">AIX Admin</option>
+        <option value="project-manager">Project Manager</option>
+        <option value="python-associate">Python Associate</option>
+        <option value="oracle-db-admin">Oracle DB Admin</option>
+        <option value="azure-engineer">Azure Engineer</option>
+        <option value="hr-executive">HR Executive</option>
+      </select>
+      <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
+        <i class="fas fa-chevron-down"></i>
+      </span>
+    </div>
+
+    <div class="relative flex-1">
+      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
+        <i class="fas fa-city"></i>
+      </span>
+      <select [(ngModel)]="city" (ngModelChange)="onFilterChange()" 
+              class="w-full pl-10 pr-10 py-2 border border-indigo-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white text-gray-700 transition duration-200 appearance-none">
+        <option value="" disabled selected>Select City</option>
+        <option value="mumbai">Mumbai</option>
+        <option value="chennai">Chennai</option>
+        <option value="thane">Thane</option>
+        <option value="belapur">Belapur</option>
+      </select>
+      <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
+        <i class="fas fa-chevron-down"></i>
+      </span>
+    </div>
+
+    <div class="relative flex-1">
+      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
+        <i class="fas fa-rupee-sign"></i>
+      </span>
+      <select [(ngModel)]="minSalary" (ngModelChange)="onFilterChange()" 
+              class="w-full pl-10 pr-10 py-2 border border-indigo-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white text-gray-700 transition duration-200 appearance-none">
+        <option value="" disabled selected>Min Salary (LPA)</option>
+        <option value="3">3 LPA</option>
+        <option value="5">5 LPA</option>
+        <option value="7">7 LPA</option>
+        <option value="10">10 LPA</option>
+        <option value="15">15 LPA</option>
+        <option value="20">20 LPA</option>
+      </select>
+      <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
+        <i class="fas fa-chevron-down"></i>
+      </span>
+    </div>
+
+    <div class="relative flex-1">
+      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
+        <i class="fas fa-rupee-sign"></i>
+      </span>
+      <select [(ngModel)]="maxSalary" (ngModelChange)="onFilterChange()" 
+              class="w-full pl-10 pr-10 py-2 border border-indigo-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white text-gray-700 transition duration-200 appearance-none">
+        <option value="" disabled selected>Max Salary (LPA)</option>
+        <option value="5">5 LPA</option>
+        <option value="10">10 LPA</option>
+        <option value="15">15 LPA</option>
+        <option value="20">20 LPA</option>
+        <option value="30">30 LPA</option>
+        <option value="50">50 LPA</option>
+      </select>
+      <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
+        <i class="fas fa-chevron-down"></i>
+      </span>
+    </div>
+
+    <button style="margin-left: 50px;"
+     class="search-btn bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition duration-200 flex items-center gap-2 whitespace-nowrap">
+      <i class="fas fa-search"></i> Search
+    </button>
+  </div>
+</div>
+
+
+
+
+  <!-- Job Listings -->
+  <section class="job-listings">
+
+
+    <div class="job-list">
+      <div *ngFor="let job of jobs" class="job-card">
+        <div>
+          <h3 style="margin-bottom: 20px; font-weight: bolder;">{{ job.title }}</h3>
+          <p><strong>Location:</strong> {{ job.location }}</p>
+          <p><strong>Employment Type:</strong> {{ job.type }}</p>
+        </div>
+        <button class="apply">APPLY</button>
+      </div>
+    </div>
+
+    <button class="view-more" id="viewMoreBtn" (click)="onViewMore()">View More</button>
+  </section>
+
+
+
+
+
+
+  <!-- Can't Find Section -->
+  <section class="cant-find">
+    <h1 style="font-weight: bolder;">Can't find what you're <br><span class="highlight">looking for?</span></h1>
+    <p style="color: black; font-weight: bolder;">Share your Resume at <a
+        href="mailto:talenthunt.lead@svnindia.com">hr.recruitment.com</a></p>
+    <div class="map-background"></div>
+  </section>
+
+</div>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="#">SERVICES</a>
+      <a href="#">CAREER</a>
+      <a href="#">ABOUT US</a>
+      <a href="#">CONTACT US</a>
+    </div>
+    <div class="contact-info">
+      <p style="color: rgb(1, 251, 60);"><strong>Get in touch with us</strong></p>
+      <p><a href="mailto:hr@recruitment.com"><i class="fas fa-envelope"></i> hrrecruitment.com</a></p>
+      <p style="color: rgb(1, 251, 60);"><strong>Whatsapp us on</strong></p>
+      <p><a href="tel:+911234567890"><i class="fas fa-phone-alt"></i> +91 1234567890</a></p>
+    </div>
+    <div class="address">
+      <p style="color: rgb(1, 251, 60);"><strong>Corporate Address:</strong></p>
+      <p style="color: white;">502, Skyline Heights, Outer Ring Road, HSR Layout, Sector 1, Bengaluru, Karnataka -
+        560102.</p>
+    </div>
+    <div class="social-icons">
+      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p style="color: white;">&copy; 2025 All Rights Reserved</p>
+    <div class="policies">
+      <a href="#">SECURITY POLICY</a>
+      <a href="#">PRIVACY POLICY</a>
+      <a href="#">COOKIE POLICY</a>
+      <a href="#">LEGAL POLICY</a>
+    </div>
+  </div>
+</footer>
