@@ -17,7 +17,7 @@ declare let $: any;
 })
 export class AppComponent {
 
-    title = 'erp-project';
+    title = 'Recruiting';
     location: any;
     routerSubscription: any;
 

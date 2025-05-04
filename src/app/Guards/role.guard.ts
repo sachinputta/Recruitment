@@ -1,9 +1,3 @@
-// import { CanActivateFn } from '@angular/router';
-
-// export const roleGuard: CanActivateFn = (route, state) => {
-//   return true;
-// };
-
 
 
 import { Injectable } from '@angular/core';
@@ -25,7 +19,7 @@ export class RoleGuard implements CanActivate {
     // Check for token expiry
     if (this.authService.isTokenExpired()) {
       this.authService.logout();
-      this.router.navigate(['/welcomepage']);
+      this.router.navigate(['/career']);
       return false;
     }
 

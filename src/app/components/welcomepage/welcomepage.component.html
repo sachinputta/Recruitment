@@ -1,31 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-<!-- Include Tailwind CSS and Font Awesome -->
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-
-
-<!-- Header -->
-<header class="header">
-  <div class="logo">
-    <img src="assets/image.jpg" alt="Careers Logo" />
-  </div>
-
-  
-  <nav class="nav">
-    <a href="#">SERVICES</a>
-    <a href="#">INDUSTRY</a>
-    <a href="#" class="active">CAREER</a>
-    <a href="#">ABOUT US</a>
-    <a href="#">CONTACT US</a>
-  </nav>
-
-  <div class="auth-buttons">
-    <a href="#" class="btn tech-support">SIGN UP</a>
-    <a href="#" class="btn employee-login">LOGIN</a>
-  </div>
-</header>
-
+<app-main-navbar></app-main-navbar>
 
 <div class="container">
 
@@ -45,90 +20,84 @@
   </section>
 
 
-<!-- Filters Section -->
-<div class="filters bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg shadow-lg max-w-6xl mx-auto">
-  <div class="flex flex-col sm:flex-row items-center gap-4">
-    
-    <div class="relative flex-1" style="width: 300px;">
-      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
-        <i class="fas fa-briefcase"></i>
-      </span>
-      <select [(ngModel)]="designation" (ngModelChange)="onFilterChange()" 
-              class="w-full pl-10 pr-10 py-2 border border-indigo-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white text-gray-700 transition duration-200 appearance-none">
-        <option value="" disabled selected>Select Designation</option>
-        <option value="aix-admin">AIX Admin</option>
-        <option value="project-manager">Project Manager</option>
-        <option value="python-associate">Python Associate</option>
-        <option value="oracle-db-admin">Oracle DB Admin</option>
-        <option value="azure-engineer">Azure Engineer</option>
-        <option value="hr-executive">HR Executive</option>
-      </select>
-      <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
-        <i class="fas fa-chevron-down"></i>
-      </span>
+  <!-- Filters Section -->
+  <div class="filters">
+    <div class="filter-row">
+      <div class="filter-item" style="width: 300px;">
+        <span class="icon-left">
+          <i class="fas fa-briefcase"></i>
+        </span>
+        <select [(ngModel)]="designation" (ngModelChange)="onFilterChange()" class="filter-select">
+          <option value="" disabled selected>Select Designation</option>
+          <option value="aix-admin">AIX Admin</option>
+          <option value="project-manager">Project Manager</option>
+          <option value="python-associate">Python Associate</option>
+          <option value="oracle-db-admin">Oracle DB Admin</option>
+          <option value="azure-engineer">Azure Engineer</option>
+          <option value="hr-executive">HR Executive</option>
+        </select>
+        <span class="icon-right">
+          <i class="fas fa-chevron-down"></i>
+        </span>
+      </div>
+  
+      <div class="filter-item">
+        <span class="icon-left">
+          <i class="fas fa-city"></i>
+        </span>
+        <select [(ngModel)]="city" (ngModelChange)="onFilterChange()" class="filter-select">
+          <option value="" disabled selected>Select City</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="chennai">Chennai</option>
+          <option value="thane">Thane</option>
+          <option value="belapur">Belapur</option>
+        </select>
+        <span class="icon-right">
+          <i class="fas fa-chevron-down"></i>
+        </span>
+      </div>
+  
+      <div class="filter-item">
+        <span class="icon-left">
+          <i class="fas fa-rupee-sign"></i>
+        </span>
+        <select [(ngModel)]="minSalary" (ngModelChange)="onFilterChange()" class="filter-select">
+          <option value="" disabled selected>Min Salary (LPA)</option>
+          <option value="3">3 LPA</option>
+          <option value="5">5 LPA</option>
+          <option value="7">7 LPA</option>
+          <option value="10">10 LPA</option>
+          <option value="15">15 LPA</option>
+          <option value="20">20 LPA</option>
+        </select>
+        <span class="icon-right">
+          <i class="fas fa-chevron-down"></i>
+        </span>
+      </div>
+  
+      <div class="filter-item">
+        <span class="icon-left">
+          <i class="fas fa-rupee-sign"></i>
+        </span>
+        <select [(ngModel)]="maxSalary" (ngModelChange)="onFilterChange()" class="filter-select">
+          <option value="" disabled selected>Max Salary (LPA)</option>
+          <option value="5">5 LPA</option>
+          <option value="10">10 LPA</option>
+          <option value="15">15 LPA</option>
+          <option value="20">20 LPA</option>
+          <option value="30">30 LPA</option>
+          <option value="50">50 LPA</option>
+        </select>
+        <span class="icon-right">
+          <i class="fas fa-chevron-down"></i>
+        </span>
+      </div>
+  
+      <button class="search-btn">
+        <i class="fas fa-search"></i> Search
+      </button>
     </div>
-
-    <div class="relative flex-1">
-      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
-        <i class="fas fa-city"></i>
-      </span>
-      <select [(ngModel)]="city" (ngModelChange)="onFilterChange()" 
-              class="w-full pl-10 pr-10 py-2 border border-indigo-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white text-gray-700 transition duration-200 appearance-none">
-        <option value="" disabled selected>Select City</option>
-        <option value="mumbai">Mumbai</option>
-        <option value="chennai">Chennai</option>
-        <option value="thane">Thane</option>
-        <option value="belapur">Belapur</option>
-      </select>
-      <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
-        <i class="fas fa-chevron-down"></i>
-      </span>
-    </div>
-
-    <div class="relative flex-1">
-      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
-        <i class="fas fa-rupee-sign"></i>
-      </span>
-      <select [(ngModel)]="minSalary" (ngModelChange)="onFilterChange()" 
-              class="w-full pl-10 pr-10 py-2 border border-indigo-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white text-gray-700 transition duration-200 appearance-none">
-        <option value="" disabled selected>Min Salary (LPA)</option>
-        <option value="3">3 LPA</option>
-        <option value="5">5 LPA</option>
-        <option value="7">7 LPA</option>
-        <option value="10">10 LPA</option>
-        <option value="15">15 LPA</option>
-        <option value="20">20 LPA</option>
-      </select>
-      <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
-        <i class="fas fa-chevron-down"></i>
-      </span>
-    </div>
-
-    <div class="relative flex-1">
-      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
-        <i class="fas fa-rupee-sign"></i>
-      </span>
-      <select [(ngModel)]="maxSalary" (ngModelChange)="onFilterChange()" 
-              class="w-full pl-10 pr-10 py-2 border border-indigo-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white text-gray-700 transition duration-200 appearance-none">
-        <option value="" disabled selected>Max Salary (LPA)</option>
-        <option value="5">5 LPA</option>
-        <option value="10">10 LPA</option>
-        <option value="15">15 LPA</option>
-        <option value="20">20 LPA</option>
-        <option value="30">30 LPA</option>
-        <option value="50">50 LPA</option>
-      </select>
-      <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-600">
-        <i class="fas fa-chevron-down"></i>
-      </span>
-    </div>
-
-    <button style="margin-left: 50px;"
-     class="search-btn bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition duration-200 flex items-center gap-2 whitespace-nowrap">
-      <i class="fas fa-search"></i> Search
-    </button>
   </div>
-</div>
 
 
 
@@ -152,55 +121,81 @@
   </section>
 
 
+  <!-- latest advice section -->
 
-
+  <div class="latest-advice-container">
+    <div class="header-2">
+      <h2 style="color: green;">Latest Newsletter</h2>
+      <a href="#" class="view-all">View All ></a>
+    </div>
+    <div class="advice-grid">
+      <!-- Card 1 -->
+      <div class="advice-card">
+        <div class="card-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1683147638125-fd31a506a429?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+        <div class="card-content">
+          <h3>India Salary Guide [2025 Update]</h3>
+          <p>Along with the latest salary benchmarks, discover key hiring trends and insights that impact India's...</p>
+          <p class="author">By Michael Page</p>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="advice-card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1587440871875-191322ee64b0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdlYiUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D');"></div>
+        <div class="card-content">
+          <h3>Talent Trends 2024: The Expectation Gap</h3>
+          <p>Discover the Expectation Gap between employees and employers, and learn how to bridge it...</p>
+          <p class="author">By Michael Page</p>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="advice-card">
+        <div class="card-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1661389360947-a4d0f67b2941?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHdlYiUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D');"></div>
+        <div class="card-content">
+          <h3>Bridging the Expectation Gap: How employers and employees can...</h3>
+          <p>Discover the factors that attract and retain people in our latest trends report, which reveals...</p>
+          <p class="author">By Simone Wu | 7 min read</p>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="advice-card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fHdlYiUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D');"></div>
+        <div class="card-content">
+          <h3>The Future of Work: 2025 Trends to Watch</h3>
+          <p>Explore the emerging trends shaping the workplace in 2025, from remote work to AI integration...</p>
+          <p class="author">By John Doe | 5 min read</p>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="advice-card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1637502877428-27e6553a8817?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fHdlYiUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D');"></div>
+        <div class="card-content">
+          <h3>Top 5 Tips for Career Growth in 2025</h3>
+          <p>Learn actionable strategies to advance your career, including upskilling and networking tips...</p>
+          <p class="author">By Emily Carter</p>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="advice-card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1583508915901-b5f84c1dcde1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fHdlYiUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D');"></div>
+        <div class="card-content">
+          <h3>Achieving Work-Life Balance in a Digital Age</h3>
+          <p>Find out how to maintain balance in a hyper-connected world with practical tips for professionals...</p>
+          <p class="author">By Sarah Lee | 6 min read</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- Can't Find Section -->
   <section class="cant-find">
     <h1 style="font-weight: bolder;">Can't find what you're <br><span class="highlight">looking for?</span></h1>
     <p style="color: black; font-weight: bolder;">Share your Resume at <a
-        href="mailto:talenthunt.lead@svnindia.com">hr.recruitment.com</a></p>
+        href="mailto:talenthunt.lead@svnindia.com">hr&#64;recruitment.com</a></p>
     <div class="map-background"></div>
   </section>
 
 </div>
 
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-links">
-      <a href="#">SERVICES</a>
-      <a href="#">CAREER</a>
-      <a href="#">ABOUT US</a>
-      <a href="#">CONTACT US</a>
-    </div>
-    <div class="contact-info">
-      <p style="color: rgb(1, 251, 60);"><strong>Get in touch with us</strong></p>
-      <p><a href="mailto:hr@recruitment.com"><i class="fas fa-envelope"></i> hrrecruitment.com</a></p>
-      <p style="color: rgb(1, 251, 60);"><strong>Whatsapp us on</strong></p>
-      <p><a href="tel:+911234567890"><i class="fas fa-phone-alt"></i> +91 1234567890</a></p>
-    </div>
-    <div class="address">
-      <p style="color: rgb(1, 251, 60);"><strong>Corporate Address:</strong></p>
-      <p style="color: white;">502, Skyline Heights, Outer Ring Road, HSR Layout, Sector 1, Bengaluru, Karnataka -
-        560102.</p>
-    </div>
-    <div class="social-icons">
-      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p style="color: white;">&copy; 2025 All Rights Reserved</p>
-    <div class="policies">
-      <a href="#">SECURITY POLICY</a>
-      <a href="#">PRIVACY POLICY</a>
-      <a href="#">COOKIE POLICY</a>
-      <a href="#">LEGAL POLICY</a>
-    </div>
-  </div>
-</footer>
+<app-footer></app-footer>

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { CustomerRegistration } from './Modals/CustomerRegistration';
+
 import { AuthService } from './Services/auth.service';
 
 @Injectable({
@@ -61,12 +61,7 @@ export class CustomerService {
   }
 
 
-  // getCustomerProfile(customerId: string): Observable<any> {
-  //   return this.http.post(`${this.baseUrl}/get-profile-details`, { customerId }, {
-  //     headers: this.auth.getAuthHeaders(),
-  //     responseType: 'json'
-  //   });
-  // }
+
 
   getCustomerProfile(customerId: string): Observable<any> {
     const token = this.auth.getToken();  // Adjust this to get your token properly
@@ -97,20 +92,4 @@ export class CustomerService {
 
 
 
-  // all register customers
-  getAllRegisteredCustomers(): Observable<CustomerRegistration[]> {
-    return this.http.get<CustomerRegistration[]>(`${this.baseUrl}/get-All-Register-customers`);
-  }
-
-  deleteCustomer(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/deleteRegisterCustomer/${id}`);
-  }
-
-  // REGISTER Customer
-newCustomerRegister(customer: CustomerRegistration): Observable<CustomerRegistration> {
-  return this.http.post<CustomerRegistration>(`${this.baseUrl}/customer-register`, customer, {
-    headers: this.auth.getAuthHeaders(),
-    responseType: 'json'
-  });
-}
 }

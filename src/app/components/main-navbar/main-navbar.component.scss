@@ -1,0 +1,56 @@
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo img {
+    padding-left: 150px;
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+  }
+  
+  .nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .auth-buttons .btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .tech-support {
+    background-color: #007bff;
+  }
+  
+  .employee-login {
+    background-color: #28a745;
+  }
+  
+  .nav a.active {
+    color: green;
+    font-weight: bold;
+    border-bottom: 2px solid green;
+  }
