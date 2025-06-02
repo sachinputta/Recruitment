@@ -10,6 +10,9 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
 import { EmployeeHomepageComponent } from './components/employee-homepage/employee-homepage.component';
+import { PostAJobComponent } from './components/post-a-job/post-a-job.component';
+import { AllPostedJobsComponent } from './components/all-posted-jobs/all-posted-jobs.component';
+import { ApplyJobComponent } from './components/apply-job/apply-job.component';
 
 const routes: Routes = [
 
@@ -17,6 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'career', component: WelcomepageComponent },
+  { path: 'apply-job', component: ApplyJobComponent },
   {
     path: 'admin-homepage',
     component: AdminHomepageComponent,
@@ -25,7 +29,8 @@ const routes: Routes = [
     path: 'employee-homepage',
     component: EmployeeHomepageComponent,
   },
-
+  { path: 'postajob', component: PostAJobComponent },
+   { path: 'allpostedjob', component: AllPostedJobsComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: '', redirectTo: '/career', pathMatch: 'full' },
   { path: 'aboutus', component: AboutusComponent },

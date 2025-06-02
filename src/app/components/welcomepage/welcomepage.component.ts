@@ -1,85 +1,102 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
+import { EmployeeService } from 'src/app/employee.service';
+import { Job } from 'src/app/Modals/job';
 
 @Component({
   selector: 'app-welcomepage',
   templateUrl: './welcomepage.component.html',
   styleUrls: ['./welcomepage.component.scss',
-      ]
+  ]
 })
 export class WelcomepageComponent {
+
   title = 'Recruitment Agency';
-
-
-  jobs: any[] = [];
-  // filteredJobs: any[] = [];
-  filteredJobs = this.jobs;
-  designation = '';
-  city = '';
+  jobs: Job[] = [];
+  filteredJobs: Job[] = [];
   currentJobIndex = 0;
   jobsPerLoad = 3;
 
-  
+  designation = '';
+  city = '';
+  employmentType: string = '';
+
+
   minSalary: string = '';
   maxSalary: string = '';
 
+  allJobs: Job[] = [];
+  paginatedJobs: Job[] = [];
 
-  allJobs = [
-    { title: 'AIX Admin', location: 'Mumbai', type: 'Full Time' },
-    { title: 'Python Associate', location: 'Chennai', type: 'Part Time' },
-    { title: 'Project Manager', location: 'Mumbai', type: 'Full Time' },
-    { title: 'Oracle DB Admin', location: 'Thane', type: 'Full Time' },
-    { title: 'Azure Engineer', location: 'Belapur', type: 'Contract' },
-    { title: 'HR Executive', location: 'Chennai', type: 'Part Time' },
-    { title: 'AIX Admin', location: 'Belapur', type: 'Full Time' },
-    { title: 'Project Manager', location: 'Mumbai', type: 'Part Time' },
-    { title: 'Python Associate', location: 'Thane', type: 'Full Time' },
-    { title: 'Oracle DB Admin', location: 'Mumbai', type: 'Contract' },
-  ];
+  page: number = 1;
+  pageSize: number = 3;
+  totalPages: number = 0;
+
+
+  maxVisiblePages = 3;
+  visiblePageStart = 1;
+  visiblePageEnd = this.maxVisiblePages;
+
+
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
-    this.loadJobs();
+    this.loadAllJobs();
   }
 
-  // Filter and load jobs based on selected designation and city
-  loadJobs(): void {
-    let filtered = this.allJobs;
 
-    if (this.designation) {
-      filtered = filtered.filter((job) =>
-        job.title.toLowerCase().includes(this.designation.toLowerCase())
-      );
+
+  loadAllJobs(): void {
+    this.employeeService.getAllJobs().subscribe((jobs) => {
+      this.allJobs = jobs;
+      this.filteredJobs = []; // Reset filters
+      this.totalPages = Math.ceil(this.allJobs.length / this.pageSize);
+      this.updateVisiblePages();
+      this.setPage(this.page);
+    });
+  }
+
+
+  setPage(page: number): void {
+    if (page < 1 || page > this.totalPages) return;
+    this.page = page;
+
+    const start = (page - 1) * this.pageSize;
+    const end = start + this.pageSize;
+
+    const sourceJobs = this.filteredJobs.length ? this.filteredJobs : this.allJobs;
+    this.paginatedJobs = sourceJobs.slice(start, end);
+    this.updateVisiblePages();
+  }
+
+
+
+  updateVisiblePages(): void {
+    const half = Math.floor(this.maxVisiblePages / 2);
+    let start = this.page - half;
+    let end = this.page + half;
+
+    if (start < 1) {
+      start = 1;
+      end = Math.min(this.maxVisiblePages, this.totalPages);
+    } else if (end > this.totalPages) {
+      end = this.totalPages;
+      start = Math.max(1, end - this.maxVisiblePages + 1);
     }
 
-    if (this.city) {
-      filtered = filtered.filter((job) => job.location.toLowerCase() === this.city.toLowerCase());
+    this.visiblePageStart = start;
+    this.visiblePageEnd = end;
+  }
+
+  get pages(): number[] {
+    const pages = [];
+    for (let i = this.visiblePageStart; i <= this.visiblePageEnd; i++) {
+      pages.push(i);
     }
-
-    this.filteredJobs = filtered;
-    this.currentJobIndex = 0;
-    this.showJobs();
-  }
-
-  // Show jobs by slicing the filtered job list based on the current index
-  showJobs(): void {
-    this.jobs = this.filteredJobs.slice(this.currentJobIndex, this.currentJobIndex + this.jobsPerLoad);
-    this.currentJobIndex += this.jobsPerLoad;
-
-    // Hide View More button if no more jobs to show
-    if (this.currentJobIndex >= this.filteredJobs.length) {
-      const viewMoreBtn = document.getElementById('viewMoreBtn');
-      if (viewMoreBtn) {
-        viewMoreBtn.style.display = 'none';
-      }
-    }
+    return pages;
   }
 
 
-  // Load more jobs when View More is clicked
-  onViewMore(): void {
-    this.showJobs();
-  }
-  
 
 
   // Handle filter change event
@@ -93,14 +110,26 @@ export class WelcomepageComponent {
     });
   }
 
-  // Handle search button click
   onSearch(): void {
-    // Add logic to perform search based on filter values
-    console.log('Search triggered:', {
-      designation: this.designation,
-      city: this.city,
-      minSalary: this.minSalary,
-      maxSalary: this.maxSalary
+    this.filteredJobs = this.allJobs.filter((job) => {
+      const matchesDesignation = this.designation
+        ? job.jobName.toLowerCase().includes(this.designation.toLowerCase())
+        : true;
+
+      const matchesCity = this.city
+        ? job.jobLocation.toLowerCase() === this.city.toLowerCase()
+        : true;
+
+      const matchesEmploymentType = this.employmentType
+        ? job.employmentType.toLowerCase() === this.employmentType.toLowerCase()
+        : true;
+
+      return matchesDesignation && matchesCity && matchesEmploymentType;
     });
+
+    this.totalPages = Math.ceil(this.filteredJobs.length / this.pageSize);
+    this.page = 1;
+    this.setPage(this.page);
   }
+
 }

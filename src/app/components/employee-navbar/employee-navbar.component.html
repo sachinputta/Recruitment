@@ -76,49 +76,29 @@
 
 <div class="sidebar">
   <!-- Dashboard -->
-  <a class="nav-link" routerLink="/admin-homepage" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
+  <!-- <a class="nav-link" routerLink="/admin-homepage" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
     <i class="fas fa-tachometer-alt"></i> Dashboard
+  </a> -->
+
+  <a class="nav-link" routerLink="/apply-job" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
+    <i class="fas fa-briefcase"></i> Apply for Job
   </a>
 
-  <!-- Jobs Dropdown -->
-  <div class="dropdown">
-    <a href="#" (click)="toggleDropdown('sales', $event)" class="dropdown-toggle" [ngClass]="{ 'active-highlight': isSalesRouteActive() }">
-      <i class="fas fa-briefcase"></i> Jobs
-      <i class="dropdown-icon"></i>
-    </a>
-    <ul class="dropdown-menu" [ngClass]="{ 'show': isSalesOpen || isSalesRouteActive() }" (click)="$event.stopPropagation()">
-      <li>
-        <a class="dropdown-item nav-link" routerLink="/postajob" [routerLinkActive]="'active'">
-          <i class="fas fa-plus-circle"></i> Post a Job
-        </a>
-      </li>
-      <li>
-        <a class="dropdown-item" routerLink="/allpostedjob" [routerLinkActive]="'active'">
-          <i class="fas fa-list-alt"></i> All Posted Jobs
-        </a>
-      </li>
-    </ul>
-  </div>
+  <a class="nav-link" routerLink="/saved-jobs" [routerLinkActive]="'active'"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <i class="fas fa-bookmark"></i> Saved Jobs
+  </a>
 
-  <!-- Newsletter Dropdown -->
-  <div class="dropdown">
-    <a href="#" (click)="toggleDropdown('purchases', $event)" class="dropdown-toggle" [ngClass]="{ 'active-highlight': isPurchasesRouteActive() }">
-      <i class="fas fa-envelope-open-text"></i> NewsLetter
-      <i class="dropdown-icon"></i>
-    </a>
-    <ul class="dropdown-menu" [ngClass]="{ 'show': isPurchasesOpen || isPurchasesRouteActive() }" (click)="$event.stopPropagation()">
-      <li>
-        <a class="dropdown-item" routerLink="/vendors">
-          <i class="fas fa-paper-plane"></i> Post a NewsLetter
-        </a>
-      </li>
-      <li>
-        <a class="dropdown-item" routerLink="/expenses">
-          <i class="fas fa-newspaper"></i> All NewsLetters
-        </a>
-      </li>
-    </ul>
-  </div>
+  <a class="nav-link" routerLink="/documents" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
+    <i class="fas fa-file-alt"></i> Documents
+  </a>
+
+  <a class="nav-link" routerLink="/my-profile" [routerLinkActive]="'active'"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <i class="fas fa-user"></i> My Profile
+  </a>
+
+
 </div>
 
 

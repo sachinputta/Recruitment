@@ -1,0 +1,99 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid p-3" style="margin-left: 100px;"> 
+  <div class="scrollable-card mx-auto shadow-lg" style="max-width: 1000px;">
+    <div class="card h-100">
+      <div class="card-header text-center bg-primary text-white">
+        <h2 class="mb-0">Post a New Job</h2>
+      </div>
+      <div class="card-body overflow-auto" style="max-height: 75vh;">
+        <form #jobForm="ngForm" (ngSubmit)="submitJob()">
+
+          <!-- Job Name -->
+          <div class="mb-2">
+            <label for="jobName" class="form-label" style="font-weight: bolder;">Job Title</label>
+            <input type="text" id="jobName" name="jobName" class="form-control form-control-sm" required
+              [(ngModel)]="job.jobName" placeholder="e.g., MongoDB Developer" />
+          </div>
+
+          <!-- Job Location & Employment Type in one row -->
+          <div class="row mb-2">
+            <div class="col-md-6">
+              <label for="jobLocation" class="form-label" style="font-weight: bolder;">Job Location</label>
+              <input type="text" id="jobLocation" name="jobLocation" class="form-control form-control-sm"
+                required [(ngModel)]="job.jobLocation" placeholder="e.g., Hyderabad" />
+            </div>
+            <div class="col-md-6">
+              <label for="employmentType" class="form-label" style="font-weight: bolder;">Employment Type</label>
+              <select id="employmentType" name="employmentType" class="form-select form-select-sm" required
+                [(ngModel)]="job.employmentType">
+                <option value="" disabled>Select type</option>
+                <option>Full-Time</option>
+                <option>Part-Time</option>
+                <option>Contract</option>
+                <option>Internship</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Job Description -->
+          <div class="mb-2">
+            <label for="jobDescription" class="form-label" style="font-weight: bolder;">Job Description</label>
+            <textarea id="jobDescription" name="jobDescription" class="form-control form-control-sm" rows="3" required
+              [(ngModel)]="job.jobDescription" placeholder="e.g., Build REST APIs using Spring Boot"></textarea>
+          </div>
+
+          <!-- Skills Required -->
+          <div class="mb-2">
+            <label for="skillsRequired" class="form-label" style="font-weight: bolder;">Skills Required</label>
+            <input type="text" id="skillsRequired" name="skillsRequired" class="form-control form-control-sm" required
+              [(ngModel)]="job.skillsRequired" placeholder="e.g., Java, Spring Boot" />
+          </div>
+
+          <!-- Company Name -->
+          <div class="mb-2">
+            <label for="companyName" class="form-label" style="font-weight: bolder;">Company Name</label>
+            <input type="text" id="companyName" name="companyName" class="form-control form-control-sm" required
+              [(ngModel)]="job.companyName" placeholder="e.g., XYZ Tech" />
+          </div>
+
+          <!-- Company Address -->
+          <div class="mb-2">
+            <label for="companyAddress" class="form-label" style="font-weight: bolder;">Company Address</label>
+            <input type="text" id="companyAddress" name="companyAddress" class="form-control form-control-sm" required
+              [(ngModel)]="job.companyAddress" placeholder="e.g., Gachibowli, Hyderabad" />
+          </div>
+
+          <!-- Number of Positions & Annual Package in one row -->
+          <div class="row mb-2">
+            <div class="col-md-6">
+              <label for="numberOfPositions" class="form-label" style="font-weight: bolder;">Number of Positions</label>
+              <input type="number" id="numberOfPositions" name="numberOfPositions"
+                class="form-control form-control-sm" required min="1" [(ngModel)]="job.numberOfPositions"
+                placeholder="e.g., 5" />
+            </div>
+            <div class="col-md-6">
+              <label for="annualPackage" class="form-label" style="font-weight: bolder;">Annual Package</label>
+              <input type="text" id="annualPackage" name="annualPackage" class="form-control form-control-sm" required
+                [(ngModel)]="job.annualPackage" placeholder="e.g., 8 LPA" />
+            </div>
+          </div>
+
+          <!-- Company URL -->
+          <div class="mb-3">
+            <label for="companyUrl" class="form-label" style="font-weight: bolder;">Company URL</label>
+            <input type="url" id="companyUrl" name="companyUrl" class="form-control form-control-sm" required
+              [(ngModel)]="job.companyUrl" placeholder="e.g., https://xyztech.com" />
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button type="submit" [disabled]="jobForm.invalid" style="font-weight: bolder;" class="btn btn-success btn-sm px-4">
+              Post Job
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

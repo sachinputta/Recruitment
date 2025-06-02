@@ -23,6 +23,10 @@ import { MainNavbarComponent } from './components/main-navbar/main-navbar.compon
 import { ContactusComponent } from './components/contactus/contactus.component';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeHomepageComponent } from './components/employee-homepage/employee-homepage.component';
+import { PostAJobComponent } from './components/post-a-job/post-a-job.component';
+import { AllPostedJobsComponent } from './components/all-posted-jobs/all-posted-jobs.component';
+import { EmployeeNavbarComponent } from './components/employee-navbar/employee-navbar.component';
+import { ApplyJobComponent } from './components/apply-job/apply-job.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -37,6 +41,10 @@ import { EmployeeHomepageComponent } from './components/employee-homepage/employ
         MainNavbarComponent,
         ContactusComponent,
         EmployeeHomepageComponent,
+        PostAJobComponent,
+        AllPostedJobsComponent,
+        EmployeeNavbarComponent,
+        ApplyJobComponent,
     ],
     imports: [
         BrowserModule,

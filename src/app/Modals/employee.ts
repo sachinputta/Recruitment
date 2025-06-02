@@ -1,35 +1,20 @@
-import { Role } from "./role";
 
-export class Employee {
+// employee.ts
+export interface Role {
+  roleName: string;
+}
 
+export interface Employee {
+  agreeToTerms: any;
   employeeId: string;
-  password: string;
   fullName: string;
-  enrollmentNumber: string;
-  dateOfEnrollment: Date;
-  course: string;
-  courseAmount:number;
-  duration: number;
-  feeOption: string;
-  feeAdvance: number;
-  deadlineDate: Date;
-  status: string;
-  mobileNumber: string;
-  address: string;
-  batchTiming: string;
-  localDate: Date; // TypeScript uses `Date` for date objects
-
-  // New fields
-  paymentMethod: string; // e.g., "cash" or "phonepay"
-  cashAmount: number; // `number` for numeric values
-  transactionId: string;
-  transactionAmount:number;
-  paymentScreenshotPath: string;
-  remainingAmount:number;
-  loginStatus:string;
-
-  imageBytes: Uint8Array; // Corresponds to Java `byte[]`
+  employeeEmail: string;
+  employeePassword: string;
+   phoneNumber: number | null; 
+  countrycode: string;
   imagePath: string;
-
-  roles:Role[];
+  dateOfJoin: string; // 'YYYY-MM-DD'
+  state: string;
+  country: string;
+  roles: Role[];
 }

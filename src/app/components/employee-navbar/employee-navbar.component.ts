@@ -9,13 +9,14 @@ import Swal from 'sweetalert2';
 
 declare var bootstrap: any;
 
+
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: 'app-employee-navbar',
+  templateUrl: './employee-navbar.component.html',
+  styleUrls: ['./employee-navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
-  changePasswordForm!: FormGroup;
+export class EmployeeNavbarComponent implements OnInit {
+ changePasswordForm!: FormGroup;
 
   isSalesOpen = false;
   isPurchasesOpen = false;
@@ -286,5 +287,4 @@ export class NavbarComponent implements OnInit {
     return purchaseRoutes.some(route => currentUrl.startsWith(route));
   }
   
-
 }

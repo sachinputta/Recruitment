@@ -14,7 +14,7 @@ export class RoleGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const expectedRoles: string[] = route.data['roles'];
-    const userRole = localStorage.getItem('role'); // Check value here
+    const userRole = sessionStorage.getItem('role'); // Check value here
 
     // Check for token expiry
     if (this.authService.isTokenExpired()) {

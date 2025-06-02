@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/customer.service';
+import { EmployeeService } from 'src/app/employee.service';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
@@ -9,36 +10,37 @@ import { AuthService } from 'src/app/Services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  customerId = '';
-  customerPassword = '';
   isLoading = false;
   loginError = '';
+   employeeId = '';
+  employeePassword = '';
 
-  constructor(private customerService: CustomerService, private authService: AuthService, private router: Router) { }
+  constructor(private employeeService: EmployeeService,
+     private authService: AuthService, private router: Router) { }
 
 
-  onLogin(): void {
+    onLogin(): void {
     this.isLoading = true;
 
-    this.authService.login(this.customerId, this.customerPassword).subscribe({
+    this.authService.login(this.employeeId, this.employeePassword).subscribe({
       next: (res) => {
         this.authService.storeToken(res.jwtToken);
 
 
-        // Store the customerId in localStorage
-        const customerId = res.customer.customerId; 
-        localStorage.setItem('customerId', customerId);
+        // Store the employeeId in localStorage
+        const employeeId = res.employee.employeeId; 
+        sessionStorage.setItem('employeeId', employeeId);
 
-        const role = res.customer.roles[0].roleName;
-        localStorage.setItem('role', role);
+        const role = res.employee.roles[0].roleName;
+        sessionStorage.setItem('role', role);
 
         this.loginError = '';
         this.isLoading = false;
 
         if (role === 'Admin') {
           this.router.navigate(['/admin-homepage']);
-        } else if (role === 'Customer') {
-          this.router.navigate(['/customer-homepage']);
+        } else if (role === 'Employee') {
+          this.router.navigate(['/employee-homepage']);
         } else {
           this.router.navigate(['/unauthorized']);
         }

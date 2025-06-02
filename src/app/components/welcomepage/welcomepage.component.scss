@@ -392,3 +392,17 @@ p {
     grid-template-columns: 1fr;
   }
 }
+
+
+.pagination .page-link {
+  color: #28a745;
+  border: 1px solid #28a745;
+  transition: 0.2s ease-in-out;
+}
+
+.pagination .page-link:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+

@@ -36,7 +36,9 @@
                                 <div class="input-group" style="flex: 1;">
                                     <span class="input-group-text"><i class="bi bi-briefcase"></i></span>
                                     <input type="text" class="form-control" name="companyName"
-                                        [(ngModel)]="customer.companyName" placeholder="Full Name">
+                                        [(ngModel)]="employee.fullName"   placeholder="Full Name">
+
+
                                 </div>
                             </div>
 
@@ -47,7 +49,7 @@
                                 <div class="input-group" style="flex: 1;">
                                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                                     <input type="email" class="form-control" name="email"
-                                        [(ngModel)]="customer.customerId" placeholder="Email Address" required email
+                                        [(ngModel)]="employee.employeeEmail"   (blur)="generateEmployeeId()" placeholder="Email Address" required email
                                         #emailRef="ngModel">
                                 </div>
                             </div>
@@ -63,7 +65,7 @@
                                 <div class="input-group" style="flex: 1;">
                                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
                                     <input type="password" class="form-control" name="passwd"
-                                        [(ngModel)]="customer.customerPassword" placeholder="Password" required>
+                                        [(ngModel)]="employee.employeePassword" placeholder="Password" required>
                                 </div>
                             </div>
 
@@ -74,7 +76,7 @@
                                     Number</label>
                                 <div class="input-group" style="flex: 1;">
                                     <span class="input-group-text"><i class="bi bi-phone"></i></span>
-                                    <select class="form-control" name="countryCode" [(ngModel)]="customer.countryCode"
+                                    <select class="form-control" name="countryCode" placeholder="+91" [(ngModel)]="employee.countrycode"
                                         style="max-width: 90px; border-radius: 0;">
                                         <option value="+1">+1</option>
                                         <option value="+91" selected>+91</option>
@@ -83,7 +85,7 @@
                                         <option value="+81">+81</option>
                                     </select>
                                     <input type="tel" class="form-control" name="mobile"
-                                        [(ngModel)]="customer.phoneNumber" placeholder="Mobile Number" required
+                                        [(ngModel)]="employee.phoneNumber" placeholder="Mobile Number" required
                                         pattern="^[0-9]{10}$" #mobileRef="ngModel" maxlength="10"
                                         (keypress)="onlyNumberKey($event)">
                                 </div>
@@ -99,7 +101,7 @@
                                     style="white-space: nowrap; font-weight: bolder; min-width: 120px;">Country</label>
                                 <div class="input-group" style="flex: 1;">
                                     <span class="input-group-text"><i class="bi bi-globe"></i></span>
-                                    <select class="form-control" name="country" [(ngModel)]="customer.country">
+                                    <select class="form-control" name="country" [(ngModel)]="employee.country">
                                         <option value="">Select Country</option>
                                         <option value="India" selected>India</option>
                                         <option value="USA">USA</option>
@@ -116,7 +118,7 @@
                                     style="white-space: nowrap; font-weight: bolder; min-width: 120px;">State</label>
                                 <div class="input-group" style="flex: 1;">
                                     <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
-                                    <input type="text" class="form-control" name="state" [(ngModel)]="customer.state"
+                                    <input type="text" class="form-control" name="state" [(ngModel)]="employee.state"
                                         placeholder="State">
                                 </div>
                             </div>
@@ -124,7 +126,7 @@
                             <!-- Checkbox Section with Modals Trigger -->
                             <div class="form-group text-center" style="margin-bottom: 20px;">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" name="terms" [(ngModel)]="customer.agreeToTerms" required>
+                                    <input type="checkbox" name="terms" [(ngModel)]="employee.agreeToTerms" required>
                                     I agree to the
                                     <a href="#" style="color: #ec9f12; font-weight: bold;" data-bs-toggle="modal"
                                         data-bs-target="#termsModal">Terms and Conditions</a>

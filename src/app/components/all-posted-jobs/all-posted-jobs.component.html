@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+
+
+<div class="min-h-screen bg-gray-100 p-4">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Job Listings</h2>
+    
+    <!-- Search Bar -->
+    <div class="mb-4">
+      <input
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="filterJobs()"
+        type="text"
+        placeholder="Search by Job Name..."
+        class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+      />
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white shadow-md rounded-lg">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Job ID</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Job Name</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Location</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Employment Type</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Company</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Package</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let job of filteredJobs" class="border-t">
+            <td class="px-4 py-2 text-sm text-gray-600">{{ job.jobId }}</td>
+            <td class="px-4 py-2 text-sm text-gray-600">{{ job.jobName }}</td>
+            <td class="px-4 py-2 text-sm text-gray-600">{{ job.jobLocation }}</td>
+            <td class="px-4 py-2 text-sm text-gray-600">{{ job.employmentType }}</td>
+            <td class="px-4 py-2 text-sm text-gray-600">{{ job.companyName }}</td>
+            <td class="px-4 py-2 text-sm text-gray-600">{{ job.annualPackage }}</td>
+            <td class="px-4 py-2 text-sm">
+              <button
+                (click)="viewJob(job.jobId)"
+                class="text-indigo-600 hover:text-indigo-800 mr-2"
+                title="View"
+              >
+                View
+              </button>
+              <button
+                (click)="editJob(job.jobId)"
+                class="text-blue-600 hover:text-blue-800 mr-2"
+                title="Edit"
+              >
+                Edit
+              </button>
+              <button
+                (click)="deleteJob(job.jobId)"
+                class="text-red-600 hover:text-red-800"
+                title="Delete"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

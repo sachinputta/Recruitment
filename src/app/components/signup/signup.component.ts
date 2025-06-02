@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/customer.service';
+import { EmployeeService } from 'src/app/employee.service';
+import { Employee } from 'src/app/Modals/employee';
 declare var bootstrap: any; // Import bootstrap to Angular scope if needed
 @Component({
   selector: 'app-signup',
@@ -8,74 +10,68 @@ declare var bootstrap: any; // Import bootstrap to Angular scope if needed
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
-  customer = {
-    companyName: '',
-    customerId: '',
-    customerPassword: '',
-    phoneNumber: '',
-    countryCode: '+91',
-    country: 'India',
+  employee: Employee = {
+    employeeId: '',
+    fullName: '',
+    employeeEmail: '',
+    employeePassword: '',
+    phoneNumber: null,
+    imagePath: '',
+     dateOfJoin: new Date().toISOString().slice(0, 10),
     state: '',
-    agreeToTerms: false,
-  customerEmail: ''
+    countrycode: '+91',
+    country: '',
+    roles: [],
+    agreeToTerms: undefined
   };
+  selectedRole: any;
+
 
   constructor(
-    private customerService: CustomerService,
+    private employeeService: EmployeeService,
     private router: Router
   ) { }
 
   ngAfterViewInit() {
     const termsModalEl = document.getElementById('termsModal');
     if (termsModalEl) {
-      new bootstrap.Modal(termsModalEl); // Attach manually if needed
+      new bootstrap.Modal(termsModalEl); 
     }
   }
   
-
-  // onSignup(): void {
-  //   if (!this.customer.agreeToTerms) {
-  //     alert('Please agree to terms and conditions.');
-  //     return;
-  //   }
-
-  //   this.customerService.registerCustomer(this.customer).subscribe({
-  //     next: () => {
-  //       alert('Account created successfully!');
-  //       this.router.navigate(['/login']);
-  //     },
-  //     error: (err: any) => {
-  //       console.error(err);
-  //       alert('Signup failed. Please try again.');
-  //     }
-  //   });
-  // }
+generateEmployeeId(): void {
+  if (this.employee.employeeEmail) {
+    this.employee.employeeId = this.employee.employeeEmail;
+  } else {
+    this.employee.employeeId = '';
+  }
+}
 
   onSignup(): void {
-    if (!this.customer.agreeToTerms) {
+    if (!this.employee.agreeToTerms) {
       alert('Please agree to terms and conditions.');
       return;
     }
   
-    const customerData = {
-      ...this.customer,
-      customerEmail: this.customer.customerId
-    };
-  
-  
-    this.customerService.registerCustomer(customerData).subscribe({
-      next: (res) => {
-        console.log('Response:', res);
-        alert('Account created successfully!');
-        this.router.navigate(['/login']);
-      },
-      error: (err: any) => {
-        console.error('Error during signup:', err);
-        alert('Signup failed. Please try again.');
-      }
-    });
-  }
-  
+
+  const employeeData = {
+    ...this.employee,
+    roles: [{ roleName: this.selectedRole }]
+  };
+
+  this.employeeService.addEmployee(employeeData).subscribe({
+    next: (res) => {
+      console.log('Employee added successfully:', res);
+      alert('Employee added successfully!');
+      this.router.navigate(['/login']); 
+    },
+    error: (err) => {
+      console.error('Error adding employee:', err);
+      alert('Failed to add employee. Please try again.');
+    }
+  });
+}
+
   onlyNumberKey(event: KeyboardEvent) {
     const charCode = event.which ? event.which : event.keyCode;
     if (charCode < 48 || charCode > 57) {
